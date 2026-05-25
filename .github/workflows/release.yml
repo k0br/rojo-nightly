@@ -105,6 +105,9 @@ jobs:
             target
           key: ${{ matrix.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
+      - name: Update lockfile for patched rbx-dom deps
+        run: cargo generate-lockfile
+
       - name: Build Release
         run: cargo build --release --locked --verbose --target ${{ matrix.target }}
 
