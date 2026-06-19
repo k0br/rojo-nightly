@@ -77,11 +77,11 @@ function Http.jsonDecode(source)
 end
 
 function Http.msgpackEncode(object)
-	return HttpService:JSONEncode(object)
+	return msgpack.encode(object)
 end
 
 function Http.msgpackDecode(source)
-	return HttpService:JSONDecode(source)
+	return msgpack.decode(source)
 end
 
 return Http

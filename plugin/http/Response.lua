@@ -1,5 +1,7 @@
 local HttpService = game:GetService("HttpService")
 
+local msgpack = require(script.Parent.Parent.msgpack)
+
 local stringTemplate = [[
 Http.Response {
 	code: %d
@@ -32,8 +34,7 @@ function Response:json()
 end
 
 function Response:msgpack()
-	-- Studio corrupts binary response bodies, so the server sends JSON now.
-	return self:json()
+	return msgpack.decode(self.body)
 end
 
 return Response
